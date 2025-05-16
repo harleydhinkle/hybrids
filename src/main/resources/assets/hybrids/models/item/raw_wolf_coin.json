@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hybrids:item/raw_wolf_coin"
+  }
+}
