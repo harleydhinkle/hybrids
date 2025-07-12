@@ -18,7 +18,7 @@ public class HybridTransformationHandler {
         boolean success = attempts >= 6 || player.getRandom().nextFloat() < 0.2f;
 
         if (success) {
-            hybrid.setForm(HybridForms.VAMPIRE_WEREWOLF);
+            hybrid.setForm(HybridForm.VAMPIRE_WEREWOLF);
             hybrid.resetHybridAttempts();
 
             // Ensure both factions are applied
