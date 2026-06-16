@@ -1,0 +1,6 @@
+{
+  "parent": "hybrids:vampire/hybrid_night_instincts",
+  "skills": [
+    "hybrids:vampire_moon_fury"
+  ]
+}

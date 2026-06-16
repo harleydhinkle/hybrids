@@ -1,4 +1,4 @@
-package java.net.wolfking068.hybrids.api.entities.hybrids;
+package net.wolfking068.hybrids.api.entities.hybrids;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 public interface IHybridDataHolder {

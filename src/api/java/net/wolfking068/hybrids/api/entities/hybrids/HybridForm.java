@@ -1,4 +1,4 @@
-package java.net.wolfking068.hybrids.api.entities.hybrids;
+package net.wolfking068.hybrids.api.entities.hybrids;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -8,14 +8,14 @@ import java.util.Map;
 import java.util.Set;
 
 public class HybridForm {
-    public static final HybridForm VAMPIRE_WEREWOLF = new HybridForm("hybrid");
+    // Internal registry
+    private static final Map<String, HybridForm> REGISTRY = new HashMap<>();
+
+    public static final HybridForm VAMPIRE_WEREWOLF = new HybridForm("vampire_werewolf");
     public static final HybridForm VAMPIRE_HUNTER   = new HybridForm("dhampir");
     public static final HybridForm WEREWOLF_HUNTER  = new HybridForm("wild hunter");
     @Nonnull
     private final String name;
-
-    // Internal registry
-    private static final Map<String, HybridForm> REGISTRY = new HashMap<>();
 
     // Constructor
     public HybridForm(@Nonnull String name) {

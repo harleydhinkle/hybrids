@@ -1,8 +1,8 @@
-package java.net.wolfking068.hybrids.api.entities.player;
+package net.wolfking068.hybrids.api.entities.player;
 import de.teamlapen.vampirism.api.entity.player.IFactionPlayer;
 
-import java.net.wolfking068.hybrids.api.entities.hybrids.IHybrid;
-import java.net.wolfking068.hybrids.api.entities.hybrids.HybridForm;
+import net.wolfking068.hybrids.api.entities.hybrids.IHybrid;
+import net.wolfking068.hybrids.api.entities.hybrids.HybridForm;
 
 public interface IHybridPlayer extends IHybrid,IFactionPlayer<IHybridPlayer> {
 
@@ -17,4 +17,10 @@ public interface IHybridPlayer extends IHybrid,IFactionPlayer<IHybridPlayer> {
     void setForm(HybridForm form);
 
     void toggleForm(); // Optional toggle behavior
+
+    int getHybridAttemptCount();
+
+    void setHybridAttemptCount(int attempts);
+
+    void resetHybridAttempts();
 }

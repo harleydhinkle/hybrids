@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import de.teamlapen.vampirism.api.VampirismAPI;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +12,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.wolfking068.hybrids.command.HybridCommands;
+import net.wolfking068.hybrids.common.skill.ModHybridSkills;
 import net.wolfking068.hybrids.item.ModItems;
 import org.slf4j.Logger;
 
@@ -25,6 +28,7 @@ public class Hybrids
         IEventBus modEventBus = context.getModEventBus();
 
         ModItems.register(modEventBus);
+        ModHybridSkills.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -36,6 +40,11 @@ public class Hybrids
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+    }
+
+    @SubscribeEvent
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        HybridCommands.register(event.getDispatcher());
     }
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

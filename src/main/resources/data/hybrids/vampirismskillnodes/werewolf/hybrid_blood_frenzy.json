@@ -1,0 +1,6 @@
+{
+  "parent": "hybrids:werewolf/hybrid_moon_fury",
+  "skills": [
+    "hybrids:werewolf_blood_frenzy"
+  ]
+}

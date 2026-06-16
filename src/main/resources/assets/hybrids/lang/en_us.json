@@ -2,5 +2,24 @@
   "item.hybrids.wolf_coin": "Wolf coin",
   "item.hybrids.raw_wolf_coin": "Raw Wolf coin",
 
-  "itemGroup.hybrids": "hybrids tab"
+  "itemGroup.hybrids": "hybrids tab",
+  "hybrid.hybrids.vampire_werewolf": "Vampire-Werewolf Hybrid",
+  "command.hybrids.vampire_werewolf.need_factions": "You need both vampire and werewolf faction progress before becoming a hybrid.",
+  "command.hybrids.vampire_werewolf.success": "Your vampire and werewolf bloodlines bind together.",
+  "command.hybrids.vampire_werewolf.summary": "Made %s player(s) vampire-werewolf hybrids. Skipped %s.",
+  "command.hybrids.form.need_hybrid": "Only vampire-werewolf hybrids can use hybrid forms.",
+  "command.hybrids.form.success": "Hybrid form changed to %s.",
+  "command.hybrids.form.summary": "Changed form for %s player(s). Skipped %s.",
+  "skill.hybrids.vampire_night_instincts": "Hybrid Night Instincts",
+  "skill.hybrids.vampire_night_instincts.desc": "Your joined bloodlines sharpen your sight and speed at night.",
+  "skill.hybrids.vampire_moon_fury": "Hybrid Moon Fury",
+  "skill.hybrids.vampire_moon_fury.desc": "The full moon strengthens your hybrid body with power and resistance.",
+  "skill.hybrids.vampire_blood_frenzy": "Hybrid Blood Frenzy",
+  "skill.hybrids.vampire_blood_frenzy.desc": "Your attacks hit harder and restore a small amount of health.",
+  "skill.hybrids.werewolf_night_instincts": "Hybrid Night Instincts",
+  "skill.hybrids.werewolf_night_instincts.desc": "Your joined bloodlines sharpen your sight and speed at night.",
+  "skill.hybrids.werewolf_moon_fury": "Hybrid Moon Fury",
+  "skill.hybrids.werewolf_moon_fury.desc": "The full moon strengthens your hybrid body with power and resistance.",
+  "skill.hybrids.werewolf_blood_frenzy": "Hybrid Blood Frenzy",
+  "skill.hybrids.werewolf_blood_frenzy.desc": "Your attacks hit harder and restore a small amount of health."
 }

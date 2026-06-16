@@ -1,0 +1,6 @@
+{
+  "parent": "hybrids:werewolf/hybrid_night_instincts",
+  "skills": [
+    "hybrids:werewolf_moon_fury"
+  ]
+}
