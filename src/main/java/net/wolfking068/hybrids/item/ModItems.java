@@ -12,9 +12,9 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, Hybrids.MOD_ID);
 
     public static final RegistryObject<Item> WOLF_COIN =
-            ITEMS.register("wolf_coin",()-> new Item(new Item.Properties().tab(ModCreativeModeTab.hybrids)));
+            ITEMS.register("wolf_coin",()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RAW_WOLF_COIN =
-            ITEMS.register("raw_wolf_coin",()-> new Item(new Item.Properties().tab(ModCreativeModeTab.hybrids)));
+            ITEMS.register("raw_wolf_coin",()-> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus)
     {

@@ -127,7 +127,15 @@ sourceSets.main.java { srcDir 'src/api/java' }
 repositories {
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
-    maven { url "https://www.cursemaven.com" }
+    // Modrinth's maven, used for Vampirism and Werewolves.
+    // (Not "exclusiveContent": ForgeGradle must also be able to serve its remapped copies of these mods.)
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
     // flatDir {
     //     dir 'libs'
@@ -146,10 +154,9 @@ dependencies {
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
-    implementation fg.deobf("curse.maven:jei-238222:4405346")
-    implementation fg.deobf("curse.maven:vampirism-233029:4649951")
-    implementation fg.deobf("curse.maven:werewolves-417851:4710845")
-    implementation fg.deobf("curse.maven:gapi-380771:3943296")
+    // Vampirism 1.20.1-1.10.13 and Werewolves 1.20.1-2.0.2.5 (Modrinth version ids)
+    implementation fg.deobf("maven.modrinth:jVZ0F1wn:dBEdKX9l")
+    implementation fg.deobf("maven.modrinth:3ElBohKg:vcK3BwMZ")
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"

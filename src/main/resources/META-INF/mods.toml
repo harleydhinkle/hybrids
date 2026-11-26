@@ -69,13 +69,13 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="vampirism"
 mandatory=true
-versionRange="[1.9.0,)"
+versionRange="[1.10.0,)"
 ordering="AFTER"
 side="BOTH"
 
 [[dependencies.${mod_id}]]
 modId="werewolves"
 mandatory=true
-versionRange="[1.1.0,)"
+versionRange="[2.0.0,)"
 ordering="AFTER"
 side="BOTH"

@@ -1,7 +1,8 @@
 package net.wolfking068.hybrids.common.player;
 
 import de.teamlapen.vampirism.api.EnumStrength;
-import de.teamlapen.vampirism.api.VReference;
+import de.teamlapen.vampirism.util.DamageHandler;
+import de.teamlapen.vampirism.world.ModDamageSources;
 import de.teamlapen.vampirism.util.Helper;
 import de.teamlapen.werewolves.core.ModEffects;
 import de.teamlapen.werewolves.core.ModTags;
@@ -29,7 +30,7 @@ public final class HybridWeaknessHandler {
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END || event.player.level.isClientSide) {
+        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide) {
             return;
         }
 
@@ -66,14 +67,14 @@ public final class HybridWeaknessHandler {
             return;
         }
 
-        if (Helper.gettingSundamge(player, player.level, player.level.getProfiler())) {
+        if (Helper.gettingSundamge(player, player.level(), player.level().getProfiler())) {
             player.setSecondsOnFire(4);
-            player.hurt(VReference.SUNDAMAGE, SUN_DAMAGE);
+            DamageHandler.hurtModded(player, ModDamageSources::sunDamage, SUN_DAMAGE);
         }
     }
 
     private static void applyGarlicWeakness(Player player) {
-        EnumStrength garlicStrength = Helper.getGarlicStrength(player, player.level);
+        EnumStrength garlicStrength = Helper.getGarlicStrength(player, player.level());
         if (garlicStrength == EnumStrength.NONE) {
             return;
         }

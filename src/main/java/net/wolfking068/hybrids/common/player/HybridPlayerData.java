@@ -16,6 +16,9 @@ public final class HybridPlayerData {
     private static final String FORM_TAG = "Form";
     private static final String FORM_MODE_TAG = "FormMode";
     private static final String ATTEMPTS_TAG = "Attempts";
+    private static final String TRANSFORM_TICKS_TAG = "TransformTicks";
+    private static final String BITE_ATTEMPTS_TAG = "BiteAttempts";
+    private static final String LAST_BITE_TIME_TAG = "LastBiteTime";
 
     private HybridPlayerData() {
     }
@@ -65,10 +68,53 @@ public final class HybridPlayerData {
         getHybridTag(player).remove(ATTEMPTS_TAG);
     }
 
+    public static int getBiteAttemptCount(Player player) {
+        return getHybridTag(player).getInt(BITE_ATTEMPTS_TAG);
+    }
+
+    public static void setBiteAttemptCount(Player player, int attempts) {
+        getHybridTag(player).putInt(BITE_ATTEMPTS_TAG, Math.max(0, attempts));
+    }
+
+    public static void resetBiteAttempts(Player player) {
+        getHybridTag(player).remove(BITE_ATTEMPTS_TAG);
+    }
+
+    /** Game time of the last bite that counted as a try, so one bite only counts once. */
+    public static long getLastBiteTime(Player player) {
+        return getHybridTag(player).getLong(LAST_BITE_TIME_TAG);
+    }
+
+    public static void setLastBiteTime(Player player, long gameTime) {
+        getHybridTag(player).putLong(LAST_BITE_TIME_TAG, gameTime);
+    }
+
+    /**
+     * Ticks left until a vampire who used a werewolf tooth finishes turning into a hybrid.
+     * 0 means they are not turning.
+     */
+    public static int getTransformTicks(Player player) {
+        return getHybridTag(player).getInt(TRANSFORM_TICKS_TAG);
+    }
+
+    public static void setTransformTicks(Player player, int ticks) {
+        if (ticks <= 0) {
+            getHybridTag(player).remove(TRANSFORM_TICKS_TAG);
+        } else {
+            getHybridTag(player).putInt(TRANSFORM_TICKS_TAG, ticks);
+        }
+    }
+
+    public static boolean isTransforming(Player player) {
+        return getTransformTicks(player) > 0;
+    }
+
     public static void copy(ServerPlayer oldPlayer, ServerPlayer newPlayer) {
         CompoundTag oldTag = getHybridTag(oldPlayer);
         if (!oldTag.isEmpty()) {
-            newPlayer.getPersistentData().getCompound(PLAYER_PERSISTED_TAG).put(Hybrids.MOD_ID, oldTag.copy());
+            CompoundTag persisted = newPlayer.getPersistentData().getCompound(PLAYER_PERSISTED_TAG);
+            persisted.put(Hybrids.MOD_ID, oldTag.copy());
+            newPlayer.getPersistentData().put(PLAYER_PERSISTED_TAG, persisted);
         }
     }
 

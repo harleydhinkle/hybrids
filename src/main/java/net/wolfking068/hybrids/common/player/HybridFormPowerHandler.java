@@ -23,7 +23,7 @@ public final class HybridFormPowerHandler {
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END || event.player.level.isClientSide) {
+        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide) {
             return;
         }
 
@@ -39,7 +39,7 @@ public final class HybridFormPowerHandler {
         }
 
         if (mode == HybridFormMode.FULL) {
-            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, Helper.isFullMoon(player.level) ? 1 : 0, false, false));
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, Helper.isFullMoon(player.level()) ? 1 : 0, false, false));
             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 0, false, false));
         }
     }
@@ -47,7 +47,7 @@ public final class HybridFormPowerHandler {
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!(event.getSource().getEntity() instanceof Player player)
-                || player.level.isClientSide
+                || player.level().isClientSide
                 || !HybridPlayerData.isVampireWerewolf(player)
                 || !isClawOrBiteAttack(player)) {
             return;

@@ -24,7 +24,7 @@ public final class HybridSkillPowerHandler {
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END || event.player.level.isClientSide) {
+        if (event.phase != TickEvent.Phase.END || event.player.level().isClientSide) {
             return;
         }
 
@@ -35,13 +35,13 @@ public final class HybridSkillPowerHandler {
 
         if (hasEitherSkill(player, ModHybridSkills.VAMPIRE_NIGHT_INSTINCTS.get(), ModHybridSkills.WEREWOLF_NIGHT_INSTINCTS.get())) {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, false, false));
-            if (Helper.isNight(player.level)) {
+            if (Helper.isNight(player.level())) {
                 player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 80, 0, false, false));
             }
         }
 
         if (hasEitherSkill(player, ModHybridSkills.VAMPIRE_MOON_FURY.get(), ModHybridSkills.WEREWOLF_MOON_FURY.get())
-                && Helper.isFullMoon(player.level)) {
+                && Helper.isFullMoon(player.level())) {
             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 0, false, false));
             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 0, false, false));
         }
@@ -51,7 +51,7 @@ public final class HybridSkillPowerHandler {
     public static void onLivingHurt(LivingHurtEvent event) {
         if (!(event.getSource().getEntity() instanceof Player player)
                 || !HybridPlayerData.isVampireWerewolf(player)
-                || player.level.isClientSide) {
+                || player.level().isClientSide) {
             return;
         }
 

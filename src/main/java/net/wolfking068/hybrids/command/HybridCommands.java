@@ -62,7 +62,7 @@ public final class HybridCommands {
 
         int changedCount = changed;
         int skippedCount = skipped;
-        source.sendSuccess(Component.translatable("command.hybrids.vampire_werewolf.summary", changedCount, skippedCount), true);
+        source.sendSuccess(() -> Component.translatable("command.hybrids.vampire_werewolf.summary", changedCount, skippedCount), true);
         return changed;
     }
 
@@ -99,7 +99,7 @@ public final class HybridCommands {
 
         int changedCount = changed;
         int skippedCount = skipped;
-        source.sendSuccess(Component.translatable("command.hybrids.form.summary", changedCount, skippedCount), true);
+        source.sendSuccess(() -> Component.translatable("command.hybrids.form.summary", changedCount, skippedCount), true);
         return changed;
     }
 }

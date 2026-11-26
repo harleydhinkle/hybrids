@@ -37,6 +37,40 @@ public class Config
             .comment("A list of items to log on common setup.")
             .defineListAllowEmpty(Collections.singletonList("items"), () -> List.of("minecraft:iron_ingot"), Config::validateItemName);
 
+    // ---- Becoming a hybrid with a werewolf tooth ----
+    static {
+        BUILDER.comment("A vampire who uses a werewolf tooth tries to become a vampire-werewolf hybrid").push("werewolf_tooth");
+    }
+
+    public static final ForgeConfigSpec.IntValue TOOTH_MAX_TRIES = BUILDER
+            .comment("Try number this many always works (the earlier tries are a gamble)")
+            .defineInRange("maxTries", 6, 1, 100);
+
+    public static final ForgeConfigSpec.DoubleValue TOOTH_LUCKY_CHANCE = BUILDER
+            .comment("Chance (0.0 to 1.0) that one of the earlier tries works. If it does not, the player dies")
+            .defineInRange("luckyChance", 0.2, 0.0, 1.0);
+
+    public static final ForgeConfigSpec.IntValue LUCKY_TRANSFORM_MINUTES = BUILDER
+            .comment("Minutes until the player becomes a hybrid after a lucky try")
+            .defineInRange("luckyTransformMinutes", 10, 0, 1440);
+
+    public static final ForgeConfigSpec.IntValue GUARANTEED_TRANSFORM_MINUTES = BUILDER
+            .comment("Minutes until the player becomes a hybrid after the last (guaranteed) try")
+            .defineInRange("guaranteedTransformMinutes", 35, 0, 1440);
+
+    public static final ForgeConfigSpec.IntValue BITE_MAX_TRIES = BUILDER
+            .comment("Getting bitten works the same way, but bite number this many is the one that always works",
+                    "(a vampire bitten by a werewolf player, or a werewolf whose blood is drunk by a vampire)")
+            .defineInRange("biteMaxTries", 8, 1, 100);
+
+    public static final ForgeConfigSpec.IntValue BITE_COOLDOWN_SECONDS = BUILDER
+            .comment("Seconds before another bite counts as a new try (so one long feeding only counts once)")
+            .defineInRange("biteCooldownSeconds", 30, 0, 3600);
+
+    static {
+        BUILDER.pop();
+    }
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static boolean logDirtBlock;

@@ -7,6 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -14,6 +15,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.wolfking068.hybrids.command.HybridCommands;
 import net.wolfking068.hybrids.common.skill.ModHybridSkills;
+import net.wolfking068.hybrids.effect.ModEffects;
+import net.wolfking068.hybrids.item.ModCreativeModeTab;
 import net.wolfking068.hybrids.item.ModItems;
 import org.slf4j.Logger;
 
@@ -23,11 +26,13 @@ public class Hybrids
 {
     public static final String MOD_ID = "hybrids";
     private static final Logger LOGGER = LogUtils.getLogger();
-    public Hybrids(FMLJavaModLoadingContext context)
+    public Hybrids()
     {
-        IEventBus modEventBus = context.getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModCreativeModeTab.register(modEventBus);
+        ModEffects.register(modEventBus);
         ModHybridSkills.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
@@ -35,7 +40,7 @@ public class Hybrids
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
